@@ -83,8 +83,8 @@
 	);
 
 	// Create/Open our json "api" file
-    fopen('bitcoin-price.json', 'w');
+    fopen(__DIR__.'/bitcoin-price.json', 'w');
 
 	// Load content from array
-    file_put_contents('bitcoin-price.json', json_encode($cotizacion));
+    file_put_contents(__DIR__.'/bitcoin-price.json', json_encode($cotizacion));
 ?>
