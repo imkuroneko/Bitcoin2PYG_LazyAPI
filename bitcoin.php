@@ -1,4 +1,8 @@
 <?php
+	// Local Timezone
+	date_default_timezone_set('America/Asuncion');
+
+	// Get content functions
 	function coinbase() {
 		$cb_json = "https://coinbase.com/api/v1/currencies/exchange_rates";
 		$json = json_decode(file_get_contents($cb_json));
@@ -55,6 +59,7 @@
 		return usd2pyg($current_price);
 	}
 
+	// Get current exchange (USD to PYG) from MaxiCambios
 	function usd2pyg($value) {
 		$xml = "http://cotizext.maxicambios.com.py/maxicambios.xml";
 		$info = file_get_contents($xml);
@@ -63,7 +68,8 @@
 
 		return number_format($value * $usd, 0, '', '.');
 	}
-
+	
+	// Create array
 	$cotizacion = array(
 		'coinbase'		=> coinbase(),
 		'bitstamp'		=> bitstamp(),
@@ -72,11 +78,13 @@
 		'coincap'		=> coincap(),
 		'bitfinex'		=> bitfinex(),
 		'bitexla'		=> bitexla(),
-		'kraken'		=> kraken()
+		'kraken'		=> kraken(),
+		'last-update'   => date("d-m-Y H:i:s")
 	);
 
+	// Create/Open our json "api" file
+    fopen('bitcoin-price.json', 'w');
 
-header("Content-type:application/json");
-echo json_encode($cotizacion);
-
+	// Load content from array
+    file_put_contents('bitcoin-price.json', json_encode($cotizacion));
 ?>
