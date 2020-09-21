@@ -1,9 +1,26 @@
-# Bitcoin2PYG_LazyAPI [v1 - Dev]
-PHP utilizado para proyectos varios donde se engloban los precios de distintos sitios para facilitar el consumo de los precios ya en Guaranies (PYG).
+## 💰 Bitcoin2PYG Lazy API [v2.0b]
+Script utilizado para obtener la cotización del Bitcoin de los siguientes sitios:
+ - Coinbase
+ - Bitstamp
+ - Blockchain
+ - Xapo
+ - Bitfinex
+ - Bitexla
+ - Kraken
+
+La cotización del dolar es tomada de:
+ - MaxiCambios
 
 ------
-## ¿Por qué Lazy?
+#### ¿Por qué Lazy?
+Por que obtiene la información únicamente cuando este archivo es ejecutado~
 
-Al momento de utilizarlo realiza las llamadas a varias APIs para obtener los precios en USD del momento. Está realizado exclusivamente para pruebas internas de proyectos en desarrollo.
+#### ¿Qué mas hace?
+Una vez obtenido las cotizaciones, realiza la conversión a PYG y posteriormente toda la información lo guarda en un archivo JSON. Cada vez que este script sea ejecutado, se sobreescribirá el contenido de dicho archivo.
 
-Próximamente estará disponible en el sitio de BitcoinParaguay una API que se actualizará cada 5 minutos para uso libre (y respectivos códigos en este repositorio.)
+------
+#### Cambios sustanciales
+> v2.0b
+> - [x] Se reescribió por completo el proyecto
+> - [x] Se actualizaron los endpoints de los sitios
+> - [x] Implementación de GuzzleHTTP para obtener el contenido (en vez de file_get_contents)
